@@ -1,5 +1,7 @@
 import math
+import time
 import binascii
+
 def fac(no):
     pri=math.remainder(no,6)
     if pri==1 or pri==-1 :  #checks 6n-1 and 6n+1 condition for primes
@@ -69,6 +71,8 @@ n=int(input("Enter value of public key n:"))   #n=p*q, we have to factorize n fo
 #is less than its square root... also it reduces the range of search by a considerable
 #amount as n increases
 
+start_time=time.process_time_ns()  #for checking time efficiency
+
 fd=0
 t=0
 r2=math.isqrt(n)               #square root
@@ -105,6 +109,10 @@ print("p:"+str(p))
 print("q:"+str(q))
 tot=(p-1)*(q-1)
 print("Totient:"+str(tot))
+
+print("\nTime Taken:",end='')
+print((time.process_time_ns()-start_time)/(10**9), "seconds\n")
+
 e=int(input("Enter value of public key e:"))
 d=ext_Euclid(e,tot)
 print("Private key d:"+str(d))
