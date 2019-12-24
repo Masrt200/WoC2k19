@@ -1,8 +1,23 @@
 import math
-import time
+#import time
 import binascii
+import json
+import requests
 
-def fac(no):
+
+def factordb(n):
+    url="http://factordb.com/api"
+    params={"query":str(n)}
+    response=requests.get(url,params=params)
+
+    factors=response.json().get("factors")
+    #output here:: ex-[['3',4],['5',3]] -- i.e., n=(3**4)*(5**3)
+    fac_list = [int(x) for x,y in factors]
+    #unique factors here...
+
+    return fac_list
+
+"""def fac(no):            #only if there was no factor db... i would have been used
     pri=math.remainder(no,6)
     if pri==1 or pri==-1 :  #checks 6n-1 and 6n+1 condition for primes
         if no%5 !=0:
@@ -13,15 +28,22 @@ def fac(no):
     if no==2 or no==3 or no==5:
         if n%no==0:
             P[0]+=str(no)
-            return 1
+            return 1"""
 
-def check_fac(a,b):
+#n=p*q, we have to factorize n for p and q
+#if n is not a perfect square which it isn't since p and q are distinct primes
+#it is known that p<(n)^0.5<q if p<q... which means one of the prime factors of n
+#is less than its square root... also it reduces the range of search by a considerable
+#amount as n increases  ~the junk algos i used in this self_made funcs
+
+
+"""def check_fac(a,b):     #you can use me for one word ciphers(abt 7-8 letters)
     while a<b:
         fd=fac(a)
         if fd==1:
             return 1
             break
-        a+=1
+        a+=1"""
 
 def ext_Euclid(A,B):  #for calcing value 'd' by extended Euclidean Algorithm
     cn=0
@@ -64,16 +86,12 @@ def ext_Euclid(A,B):  #for calcing value 'd' by extended Euclidean Algorithm
             vd=vd+A
         return vd
 
-P=[''] #for storing value of p        
-n=int(input("Enter value of public key n:"))   #n=p*q, we have to factorize n for p and q
-#if n is not a perfect square which it isn't since p and q are distinct primes
-#it is known that p<(n)^0.5<q if p<q... which means one of the prime factors of n
-#is less than its square root... also it reduces the range of search by a considerable
-#amount as n increases
+     
+n=int(input("Enter value of public key n:"))   
 
-start_time=time.process_time_ns()  #for checking time efficiency
+#start_time=time.process_time_ns()  #for checking time efficiency
 
-fd=0
+"""fd=0    #---->somuch of code is wasted
 t=0
 r2=math.isqrt(n)               #square root
 r3=math.floor(math.pow(n,1/3)) #cube root
@@ -101,17 +119,22 @@ while True:
         a=2
         b=r4
     else:
-        break
+        break"""
 
-p=int(P[0])
-q=int(n/p)
+p=factordb(n)[0]
+try:
+    q=factordb(n)[1]
+except IndexError as index: 
+    print("n can't be factorized... sorry message is too safe")
+    exit()
+
 print("p:"+str(p))
 print("q:"+str(q))
 tot=(p-1)*(q-1)
 print("Totient:"+str(tot))
 
-print("\nTime Taken:",end='')
-print((time.process_time_ns()-start_time)/(10**9), "seconds\n")
+#print("\nTime Taken:",end='')
+#print((time.process_time_ns()-start_time)/(10**9), "seconds\n")
 
 e=int(input("Enter value of public key e:"))
 d=ext_Euclid(e,tot)
@@ -122,7 +145,13 @@ C=int(input("Enter cipher text c:"))
 m=pow(C,d,n)  #using property of pow for calcing m=(c**d)%n
 print("Decrypted text:"+str(m))
 
-message=binascii.unhexlify(hex(m)[2:]).decode()
+print("Decrypted text(hex'ed out):"+str(hex(m)[2:]))
+
+try:
+    message=binascii.unhexlify(hex(m)[2:]).decode()
+except binascii.Error:   #catching python error for odd length strings
+    message=binascii.unhexlify(str('0'+hex(m)[2:])).decode()
+
 print("Decrypted message:"+str(message))
 
 input()

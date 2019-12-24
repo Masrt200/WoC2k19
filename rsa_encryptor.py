@@ -19,3 +19,5 @@ e=int(input("Enter the public key e:"))
 
 ciphertext=pow(plaintext,e,n)   #as per rsa encryption (c**e)%n
 print("Cipher Text:",ciphertext)
+
+input()
