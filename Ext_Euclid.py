@@ -36,3 +36,5 @@ print(str(ud)+"*"+str(a)+"+"+str(vd)+"*"+str(b)+"="+str(d))
 
 if ud<0:
     print(b+ud)
+
+input()

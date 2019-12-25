@@ -81,7 +81,7 @@ def rsa_calc(n):
 
     return tot
 
-def decrypting():
+def decrypting(m):
     print("\nDecrypted text:",m)
 
     print("\nDecrypted text(hex'ed out):"+str(hex(m)[2:]))
@@ -90,6 +90,9 @@ def decrypting():
         message=binascii.unhexlify(hex(m)[2:].rstrip('L')).decode()
     except binascii.Error:   #catching python error for odd length strings
         message=binascii.unhexlify(str('0'+hex(m)[2:].rstrip('L'))).decode()
+    except:
+       print("Invalid start bytes of some places!")
+
 
     print("\nDecrypted message:"+str(message))
 
@@ -161,7 +164,7 @@ def init():
     e=int(input("Enter value of public key e:"))
     C=int(input("Enter cipher text c:"))
 
-    if e==3 and root3rd(C)<root3rd(n):
+    if e==3 and C<root3rd(n):
         m=root3rd(C)
 
     elif e<n and Weiner.attack(e,n)[3]==True: 
@@ -174,7 +177,7 @@ def init():
     
     else:
         print("\nFactordb was used!!")
-        tot=rsa_calc()
+        tot=rsa_calc(n)
         d=ext_Euclid(e,tot)
         print("Private key d:"+str(d))
         m=pow(C,d,n)#using property of pow for calcing m=(c**d)%n
@@ -193,3 +196,4 @@ input()
 
 #padding... test-->bytes-->hex-->int of hex obtained
 #reverse message obtained: int obatined-->hex-->bytes-->string
+#use 3,17,65537 if nothing is given
