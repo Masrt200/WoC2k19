@@ -11,11 +11,13 @@ def root3rd(x):
     return y
 
 def Euclid(a,b):
+    ct=0
     if a>b:   #reversing values of a and b
         a=a+b
         b=a-2*b
         a=(a-b)//2
         b=a+b
+        ct+=1
 
     c=a   #calling vals of a and c for calcing
     d=b
@@ -42,8 +44,10 @@ def Euclid(a,b):
 
     #if ud<0:
     #   ud=ud+b
-
-    return ud
+    if ct==0:
+        return ud
+    else:
+        return vd
 
 def init():
     e=int(input("Enter no. of ciphers captured:"))
@@ -61,9 +65,10 @@ def init():
         Num=Num*moduli
 
     for x in range(e):
-        y=x+1
-        if y==e: y=0
-        div=n[x]*n[y]
+        div=1
+        for y in range(e):
+            if y!=x:
+                div=div*n[y]
         N.append(div)
 
     for x in range(e):
