@@ -50,6 +50,8 @@ Compulsary Arguments for correct usage::
 
 [-k] for manually typing the key in case of Caeser/Vigenere... (optional)
 
+[-l] for specifying max probable key length in case of vigenere cipher... (default value=10)
+
 
 Format of text in file specified:: For ciphers texts must be as it to be encrypted
 
@@ -60,3 +62,5 @@ e:<public_key>
 c/m:<cipher_text>/<message>
 """
 it should be the keyword followed by its respective value during encrypting it reads 'm' instead of the general 'c'
+
+
