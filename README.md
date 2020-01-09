@@ -61,12 +61,5 @@ n:<modulus>
 e:<public_key>
 c/m:<cipher_text>/<message>
 """
-<<<<<<< HEAD
-it should be the keyword followed by its respective value during encrypting it reads 'm' instead of the general 'c'
-
-
-=======
 It should be the keyword followed by its respective value. During encrypting it reads 'm' instead of the general 'c'
   
-  
->>>>>>> f69f0941a3f9accc62c93f3570e0c587b4083f43
