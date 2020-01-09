@@ -46,7 +46,7 @@ Compulsary Arguments for correct usage::
 
 [-C/V/A/B/P/F/S/R/W/E/I] any one of these for specifying the kind of cipher/rsa attack... no default value
 
-[-f/-c] for specifying the file containing the text or typing the text manually(not applicable for rsa)
+[-f/-c] for specifying the file containing the text or typing the text manually (not applicable for rsa)
 
 [-k] for manually typing the key in case of Caeser/Vigenere... (optional)
 
@@ -59,4 +59,6 @@ n:<modulus>
 e:<public_key>
 c/m:<cipher_text>/<message>
 """
-it should be the keyword followed by its respective value during encrypting it reads 'm' instead of the general 'c'
+It should be the keyword followed by its respective value. During encrypting it reads 'm' instead of the general 'c'
+  
+  
