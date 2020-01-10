@@ -6,7 +6,8 @@ This projects devotes itself to decrypting various text encryptions algorithms, 
 Description: command-line-tool:: cryptologer.exe
 
 
-usage: cryptologer.py [-h] [--decrypt] [--encrypt] [--sourcefile SOURCEFILE]
+#usage: 
+  cryptologer.py [-h] [--decrypt] [--encrypt] [--sourcefile SOURCEFILE]
                    	  [--cipher CIPHER] [--key KEY] [--caeser] [--vignere]
                       [--affine] [--bacon] [--polybius] [--railfence] [--atbash]
                       [--substitution] [--rsa] [--weiner] [--smalle] [--internal]
@@ -14,7 +15,7 @@ usage: cryptologer.py [-h] [--decrypt] [--encrypt] [--sourcefile SOURCEFILE]
 
 Decryptor for Caeser, Vigenere, types of RSA and more...
 
-optional arguments:
+#optional arguments:
 -h, --help            show this help message and exit
 --decrypt, --dec, -d  Performs Decryption
 --encrypt, --enc, -e  Performs Encryption
@@ -41,7 +42,7 @@ optional arguments:
 --chinese, -H         Using the Chinese Remainder Theorem for cracking RSA from e
                       packets having the same n
 
-Compulsary Arguments for correct usage:: 
+#Compulsary Arguments for correct usage:: 
 [-e/d] for specifing encryption or decryption... no default value
 
 [-C/V/A/B/P/F/S/R/W/E/I] any one of these for specifying the kind of cipher/rsa attack... no default value
@@ -53,9 +54,9 @@ Compulsary Arguments for correct usage::
 [-l] for specifying max probable key length in case of vigenere cipher... (default value=10)
 
 
-Format of text in file specified:: For ciphers texts must be as it to be encrypted
+#Format of text in file specified:: For ciphers texts must be as it to be encrypted
 
-For RSA, the file must be the format;;
+#For RSA, the file must be the format;;
 """
 n:<modulus>
 e:<public_key>
@@ -64,12 +65,15 @@ c/m:<cipher_text>/<message>
 It should be the keyword followed by its respective value. During encrypting it reads 'm' instead of the general 'c'
 
 
-INSTALLATION:::
+#INSTALLATION:::
 
 The Installation files are present in the SETUP folder.
 ---> mystic_win is for windows installation. The files upon installation are auto-saved to C:\Program Files (x86)\D3crytMe!\
 
 ---> crypt_linux is that for linux. This is a zip file.
+
+
+#Screenshots of some prominent decryptions are present in Snip folder
 
 
   
