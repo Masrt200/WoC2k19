@@ -2,7 +2,7 @@
 import binascii
 import math
 
-def Euclid_RSA(a,b):
+def Euclid_RSA(A,B):
 
     cn=0
     if A>B:  #reversing vals in case e>totient

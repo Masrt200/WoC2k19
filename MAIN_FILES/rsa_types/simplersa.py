@@ -86,9 +86,9 @@ def decrypting(m):
     print("decrypted text(hex'ed out):",hex(m)[2:])
 
     try:
-        message=binascii.unhexlify(hex(m)[2:].rstrip('L')).decode()
+        message=binascii.unhexlify(hex(m)[2:].rstrip('L')).decode('utf-8','ignore')
     except binascii.Error:   #catching python error for odd length strings
-        message=binascii.unhexlify(str('0'+hex(m)[2:].rstrip('L'))).decode()
+        message=binascii.unhexlify(str('0'+hex(m)[2:].rstrip('L'))).decode('utf-8','ignore')
     except:
        print("Invalid start bytes of some places!")
 

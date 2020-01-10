@@ -4,6 +4,7 @@ check when e is not 3 or 65537
 """
 from fractions import Fraction
 import math
+from decimal import Decimal
 
 def cont_fractions(a):
 	real=a

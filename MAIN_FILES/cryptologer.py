@@ -15,10 +15,16 @@ import requests
 import json
 import binascii
 
-sys.path.append('C:\\Users\\immas\\Desktop\\Main\\Encrypting\\')
-sys.path.append('C:\\Users\\immas\\Desktop\\Main\\Decrypting\\')
-sys.path.append('C:\\Users\\immas\\Desktop\\Main\\Algorithms\\')
-sys.path.append('C:\\Users\\immas\\Desktop\\Main\\rsa_types\\')
+def path():
+	f1=open('D:\\crrypic\\path.txt','r')
+	locate=f1.read()
+	return locate
+
+location=path()
+sys.path.append('%s\\Encrypting\\' % location)
+sys.path.append('%s\\Decrypting\\' % location)
+sys.path.append('%s\\Algorithms\\' % location)
+sys.path.append('%s\\rsa_types\\' % location)
 
 #file imports for encryption
 from caeser import julius,bruteforce
@@ -30,9 +36,10 @@ from atbash import atb
 from polybius_enc import tsquaree
 from substitution_enc import substitute
 from rsa_encryptor import rivest
+from twipri import pri
 
 #algorithms import
-from Ext_Euclid import reversing, printing
+from Ext_Euclid import reversing, printing, Euclid_RSA
 
 #file imports for decryption
 from vigenere_dec import impossible, withkey#import impossible, withkey
@@ -71,9 +78,9 @@ def initializeParser():
 	parser.add_argument("--weiner","-W",help="Cracking RSA using Weiner attack",action="store_true")
 	parser.add_argument("--smalle","-E",help="Cracking RSA provided e is very small",action="store_true")
 	parser.add_argument("--internal","-I",help="If an internal attack for RSA is being performed",action="store_true")
-	parser.add_argument("--fermat","-M",help="Fermat's attack on the RSA encrypted text",action="store_true")
+	#parser.add_argument("--fermat","-M",help="Fermat's attack on the RSA encrypted text",action="store_true")
 	parser.add_argument("--twin","-N",help="If the RSA public is a product of twin prime, use this",action="store_true")
-	parser.add_argument("--chinese","-H",help="Using the Chinese Remainder Theorem for cracking RSA from e packets having the same n",action="store_true")
+	#parser.add_argument("--chinese","-H",help="Using the Chinese Remainder Theorem for cracking RSA from e packets having the same n",action="store_true")
 
 	return parser
 
@@ -191,6 +198,12 @@ def main():
 				plaintext=printing(smallie(n,c))
 			elif args.internal:
 				plaintext=company(n,e,c)
+			elif args.twin:
+				p,q=pri(n)
+				tot=(p-1)*(q-1)
+				print("totient:",int(tot))
+				plaintext=reversing(n,Euclid_RSA(e,tot),c)
+
 
 
 			
