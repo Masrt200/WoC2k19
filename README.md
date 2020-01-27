@@ -81,7 +81,7 @@ Optional Arguments
 
 **RSA**:: text files require specifying modulus *n*, public key _e_ and ciphertext _c_ in seperate lines
 
-![Input_Example](/master/Snips/file.png)
+![Input_Example](/Snips/file.png)
 
 The keyword should be followed by its respective value. While encrypting using RSA, use *m* instead of the general *c*.
 
@@ -89,29 +89,29 @@ The keyword should be followed by its respective value. While encrypting using R
 
 ***Caeser Cipher Bruteforce***
 
-![caeser](/master/Snips/Caeser.jpg)
+![caeser](https://github.com/Masrt200/WoC2k19/blob/master/Snips/Caeser.jpg)
 
 ***Vignere without key***
 
 *Encrypting*
 
-![Vig_ENC](/master/Snips/Vig_enc.png)
+![Vig_ENC](/Snips/Vig_enc.png)
 
 *Decrypting*
 
-![Vig_DEC](/master/Snips/Vig_dec.png)
+![Vig_DEC](/Snips/Vig_dec.png)
 
 ***Simple RSA***
 
-![Rivert](/master/Snips/simple_rsa.png)
+![Rivert](/Snips/simple_rsa.png)
 
 ***RSA: Small-E Attack***
 
-![Shamir](/master/Snips/small_e.png)
+![Shamir](/Snips/small_e.png)
 
 ***RSA: Weiner Attack***
 
-![Aldeman](/master/Snips/Weiner_long.png)
+![Aldeman](/Snips/Weiner_long.png)
 
 
 
