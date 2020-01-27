@@ -10,7 +10,7 @@ This projects devotes itself to decrypting various text encryptions algorithms, 
 
 #### Description
 
-command-line-tool:: cryptologer.py
+Command-line-tool:: **cryptologer.py**
 
 #### Environment
 
@@ -22,7 +22,7 @@ There are setup files available for installing the project in the **/SETUP** fol
 
 *Linux Install:* download *crypt_linux*, it's a zip file. Unzip and run python script *alias* first then use `cryptologer` in the bash.
 
-*Windows Install:* download *mystic_win* and go through the installation process. open the registry key *crypt*, restart terminal and use `cryptologer`.
+*Windows Install:* download *mystic_win* and go through the installation process. Open the registry key *crypt*, restart terminal and use `cryptologer`.
 The required files are auto-saved to  **C:\Program Files (x86)\D3crytMe!**
 
 ## Bashing Options
@@ -40,7 +40,7 @@ Optional Arguments
 --sourcefile SOURCEFILE, --sf SOURCEFILE, -f SOURCEFILE
                       Input file with ciphertext
 --cipher CIPHER, --cip CIPHER, -c CIPHER
-                      Input cipher as test
+                      Input cipher as text
 
 --key KEY, -k KEY     If the key is known (text for vignere, shift for caeser)
 --caeser, -C          If the cipher is caeser cipher
@@ -81,31 +81,37 @@ Optional Arguments
 
 **RSA**:: text files require specifying modulus *n*, public key _e_ and ciphertext _c_ in seperate lines
 
-![Input_Example](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/file.png)
+![Input_Example](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/file.png)
 
 The keyword should be followed by its respective value. While encrypting using RSA, use *m* instead of the general *c*.
 
 ## Examples
 
 ***Caeser Cipher Bruteforce***
-![caeser](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Caeser.jpg)
+
+![caeser](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/Caeser.jpg)
 
 ***Vignere without key***
 
 *Encrypting*
-![Vig_ENC](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Vig_enc.png)
+
+![Vig_ENC](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/Vig_enc.png)
 
 *Decrypting*
-![Vig_DEC](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Vig_dec.png)
+
+![Vig_DEC](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/Vig_dec.png)
 
 ***Simple RSA***
-![Rivert](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/simple_rsa.png)
+
+![Rivert](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/simple_rsa.png)
 
 ***RSA: Small-E Attack***
-![Shamir](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/small_e.png)
+
+![Shamir](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/small_e.png)
 
 ***RSA: Weiner Attack***
-![Aldeman](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Weiner_long.png)
+
+![Aldeman](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/Weiner_long.png)
 
 
 
