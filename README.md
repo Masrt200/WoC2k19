@@ -1,18 +1,22 @@
-#D3crypt0r
->by Mohit Agarwal. 1st Year, Btech in Chemical Engineering.
-*Mentor:Nirmit Shah Sir. 2nd Year, Btech in Electronics And Instrumentation Engineering*
+# D3crypt0r
+
+>*by Mohit Agarwal. 1st Year, Btech in Chemical Engineering.*
+
+>*Mentor:Nirmit Shah Sir. 2nd Year, Btech in Electronics And Instrumentation Engineering*
 
 **My Winter of Code 2019's Project**; for *Cyberlabs*, the coding club of **IIT(ISM) Dhanbad**.
 
 This projects devotes itself to decrypting various text encryptions algorithms, specifically the likes of Rivest-Shamir-Aldeman(RSA encryption algorithm) and ciphers, mainly the Vigenere and Caeser ciphers and many others.(p.s. encryptions can also be done... since knowledge flows both ways)
 
-####Description
+#### Description
+
 command-line-tool:: cryptologer.py
 
-####Environment
+#### Environment
+
 Python 3.5+
 
-##Installation
+## Installation
 
 There are setup files available for installing the project in the **/SETUP** folder. viz., for both latest *Windows* and *Linux* operating systems.
 
@@ -21,7 +25,7 @@ There are setup files available for installing the project in the **/SETUP** fol
 *Windows Install:* download *mystic_win* and go through the installation process. open the registry key *crypt*, restart terminal and use `cryptologer`.
 The required files are auto-saved to  **C:\Program Files (x86)\D3crytMe!**
 
-##Bashing Options
+## Bashing Options
 ``` bash
 cryptoloher -h
 
@@ -57,10 +61,10 @@ Optional Arguments
 --chinese, -H         Using the Chinese Remainder Theorem for cracking RSA from e packets having the same n
 ```                      
 
-##Compulsary Arguments for correct usage:: 
-`-e``-d` for specifing encryption or decryption:: **no default value**
+## Compulsary Arguments for correct usage:: 
+`-e` `-d` for specifing encryption or decryption:: **no default value**
 
-`-C``-V``-A``-B``-P``-F``-S``-R``-R``-W``-E``-I` any one of these for specifying the kind of cipher/rsa attack:: **no default value**
+`-C` `-V` `-A` `-B` `-P` `-F` `-S` `-R` `-W` `-E` `-I` any one of these for specifying the kind of cipher/rsa attack:: **no default value**
 
 `-f` for specifying the file containing the data 
 
@@ -71,7 +75,8 @@ Optional Arguments
 `-l` for specifying max probable key length in case of vigenere cipher... **default value=10**
 
 
-###File Format & Content 
+### File Format & Content 
+
 **Ciphers**:: raw data in text files
 **RSA**:: text files require specifying modulus *n*, public key _e_ and ciphertext _c_ in seperate lines
 
@@ -79,12 +84,13 @@ Optional Arguments
 
 The keyword should be followed by its respective value. While encrypting using RSA, use *m* instead of the general *c*.
 
-##Examples
+## Examples
 
 ***Caeser Cipher Bruteforce***
 ![caeser](https://github.com/Masrt200/WoC2k19/tree/master/Snips/Caeser.jpg)
 
 ***Vignere without key***
+
 *Encrypting*
 ![Vig_ENC](https://github.com/Masrt200/WoC2k19/tree/master/Snips/Vig_enc.png)
 
