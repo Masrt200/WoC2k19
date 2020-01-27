@@ -81,7 +81,7 @@ Optional Arguments
 
 **RSA**:: text files require specifying modulus *n*, public key _e_ and ciphertext _c_ in seperate lines
 
-![Input_Example](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/file.png)
+![Input_Example](/master/Snips/file.png)
 
 The keyword should be followed by its respective value. While encrypting using RSA, use *m* instead of the general *c*.
 
@@ -89,29 +89,29 @@ The keyword should be followed by its respective value. While encrypting using R
 
 ***Caeser Cipher Bruteforce***
 
-![caeser](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/Caeser.jpg)
+![caeser](/master/Snips/Caeser.jpg)
 
 ***Vignere without key***
 
 *Encrypting*
 
-![Vig_ENC](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/Vig_enc.png)
+![Vig_ENC](/master/Snips/Vig_enc.png)
 
 *Decrypting*
 
-![Vig_DEC](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/Vig_dec.png)
+![Vig_DEC](/master/Snips/Vig_dec.png)
 
 ***Simple RSA***
 
-![Rivert](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/simple_rsa.png)
+![Rivert](/master/Snips/simple_rsa.png)
 
 ***RSA: Small-E Attack***
 
-![Shamir](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/small_e.png)
+![Shamir](/master/Snips/small_e.png)
 
 ***RSA: Weiner Attack***
 
-![Aldeman](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Snips/Weiner_long.png)
+![Aldeman](/master/Snips/Weiner_long.png)
 
 
 
