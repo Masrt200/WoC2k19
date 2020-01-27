@@ -81,7 +81,7 @@ Optional Arguments
 
 **RSA**:: text files require specifying modulus *n*, public key _e_ and ciphertext _c_ in seperate lines
 
-![Input_Example](https://github.com/Masrt200/WoC2k19/blob/master/Snips/file.png)
+![Input_Example](https://github.com/Masrt200/WoC2k19/blob/master/Snips/file.PNG)
 
 The keyword should be followed by its respective value. While encrypting using RSA, use *m* instead of the general *c*.
 
@@ -95,23 +95,23 @@ The keyword should be followed by its respective value. While encrypting using R
 
 *Encrypting*
 
-![Vig_ENC](https://github.com/Masrt200/WoC2k19/blob/master/Snips/Vig_enc.png)
+![Vig_ENC](https://github.com/Masrt200/WoC2k19/blob/master/Snips/Vig_enc.PNG)
 
 *Decrypting*
 
-![Vig_DEC](https://github.com/Masrt200/WoC2k19/blob/master/Snips/Vig_dec.png)
+![Vig_DEC](https://github.com/Masrt200/WoC2k19/blob/master/Snips/Vig_dec.PNG)
 
 ***Simple RSA***
 
-![Rivert](https://github.com/Masrt200/WoC2k19/blob/master/Snips/simple_rsa.png)
+![Rivert](https://github.com/Masrt200/WoC2k19/blob/master/Snips/simple_rsa.PNG)
 
 ***RSA: Small-E Attack***
 
-![Shamir](https://github.com/Masrt200/WoC2k19/blob/master/Snips/small_e.png)
+![Shamir](https://github.com/Masrt200/WoC2k19/blob/master/Snips/small_e.PNG)
 
 ***RSA: Weiner Attack***
 
-![Aldeman](https://github.com/Masrt200/WoC2k19/blob/master/Snips/Weiner_long.png)
+![Aldeman](https://github.com/Masrt200/WoC2k19/blob/master/Snips/Weiner_long.PNG)
 
 
 
