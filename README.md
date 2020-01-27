@@ -72,39 +72,40 @@ Optional Arguments
 
 `-k` for manually typing the key in case of Caeser/Vigenere:: **optional**
 
-`-l` for specifying max probable key length in case of vigenere cipher... **default value=10**
+`-l` for specifying max probable key length in case of vigenere cipher:: **default value=10**
 
 
 ### File Format & Content 
 
 **Ciphers**:: raw data in text files
+
 **RSA**:: text files require specifying modulus *n*, public key _e_ and ciphertext _c_ in seperate lines
 
-![Input_Exmample](https://github.com/Masrt200/WoC2k19/tree/master/Snips/file.png)
+![Input_Example](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/file.png)
 
 The keyword should be followed by its respective value. While encrypting using RSA, use *m* instead of the general *c*.
 
 ## Examples
 
 ***Caeser Cipher Bruteforce***
-![caeser](https://github.com/Masrt200/WoC2k19/tree/master/Snips/Caeser.jpg)
+![caeser](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Caeser.jpg)
 
 ***Vignere without key***
 
 *Encrypting*
-![Vig_ENC](https://github.com/Masrt200/WoC2k19/tree/master/Snips/Vig_enc.png)
+![Vig_ENC](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Vig_enc.png)
 
 *Decrypting*
-![Vig_DEC](https://github.com/Masrt200/WoC2k19/tree/master/Snips/Vig_dec.png)
+![Vig_DEC](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Vig_dec.png)
 
 ***Simple RSA***
-![Rivert](https://github.com/Masrt200/WoC2k19/tree/master/Snips/simple_rsa.png)
+![Rivert](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/simple_rsa.png)
 
 ***RSA: Small-E Attack***
-![Shamir](https://github.com/Masrt200/WoC2k19/tree/master/Snips/small_e.png)
+![Shamir](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/small_e.png)
 
 ***RSA: Weiner Attack***
-![Aldeman](https://github.com/Masrt200/WoC2k19/tree/master/Snips/Weiner_long.png)
+![Aldeman](https://raw.githubusercontent.com/Masrt200/WoC2k19/master/path/to/Weiner_long.png)
 
 
 
