@@ -1,16 +1,16 @@
 # D3crypt0r
 
->*by Mohit Agarwal. 1st Year, Btech in Chemical Engineering.*
+>*by Mohit Agarwal. 1st Year, Btech in Chemical Engineering*
 
->*Mentor:Nirmit Shah Sir. 2nd Year, Btech in Electronics And Instrumentation Engineering*
+>*Mentor: Nirmit Shah Sir. 2nd Year, Btech in Electronics And Instrumentation Engineering*
 
 **My Winter of Code 2019's Project**; for *Cyberlabs*, the coding club of **IIT(ISM) Dhanbad**.
 
 This projects devotes itself to decrypting various text encryptions algorithms, specifically the likes of Rivest-Shamir-Aldeman(RSA encryption algorithm) and ciphers, mainly the Vigenere and Caeser ciphers and many others.(p.s. encryptions can also be done... since knowledge flows both ways)
 
-#### Description
+#### Application
 
-Command-line-tool:: **cryptologer.py**
+Command-Line-Tool:: **cryptologer.py**
 
 #### Environment
 
@@ -61,7 +61,7 @@ Optional Arguments
 --chinese, -H         Using the Chinese Remainder Theorem for cracking RSA from e packets having the same n
 ```                      
 
-## Compulsary Arguments for correct usage:: 
+## Arguments & Usage:: 
 `-e` `-d` for specifing encryption or decryption:: **no default value**
 
 `-C` `-V` `-A` `-B` `-P` `-F` `-S` `-R` `-W` `-E` `-I` any one of these for specifying the kind of cipher/rsa attack:: **no default value**
