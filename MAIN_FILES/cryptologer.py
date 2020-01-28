@@ -22,7 +22,7 @@ def path():
 
 location=path()
 sys.path.append('%s\\Encrypting\\' % location)
-sys.path.append('%s\\Decrypting\\' % location)
+sys.path.append('C:\\Users\\immas\\Desktop\\Main\\Decrypting')
 sys.path.append('%s\\Algorithms\\' % location)
 sys.path.append('%s\\rsa_types\\' % location)
 

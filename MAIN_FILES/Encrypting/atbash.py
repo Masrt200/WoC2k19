@@ -7,7 +7,7 @@ def atb(sometext):
 		ct=0
 		if x.isupper():
 			ct+=1
-			x.lower()
+			x=x.lower()
 
 		if x in alphabet:
 			index=atbash.index(x)
@@ -19,4 +19,3 @@ def atb(sometext):
 			othertext+=x
 
 	return othertext
-

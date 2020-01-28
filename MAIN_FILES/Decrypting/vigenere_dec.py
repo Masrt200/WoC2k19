@@ -1,9 +1,16 @@
 import operator
 
 def impossible(ciphertext,length):
+	real_cipher=ciphertext
 
 	ciphertext=ciphertext.lower()
 	alphabet='abcdefghijklmnopqrstuvwxyz'
+
+	ciphertext_adj=''
+
+	for i in ciphertext:
+		if i in alphabet:
+			ciphertext_adj+=i
 
 	key=2
 	key_max=10
@@ -19,7 +26,7 @@ def impossible(ciphertext,length):
 		blocks=[]
 		i=0
 		while i<key:
-			blocks.append(ciphertext[i::key])
+			blocks.append(ciphertext_adj[i::key])
 			i+=1
 
 		key_blocks.append(blocks)
@@ -38,7 +45,7 @@ def impossible(ciphertext,length):
 
 			for z in alphabet:
 				ic+=count[z]*(count[z]-1)
-
+			
 			ic=ic/(n*(n-1))
 			avg+=ic
 
@@ -79,8 +86,11 @@ def impossible(ciphertext,length):
 
 			chi_sq=0
 			for q in alphabet:
-				squared=((count[q]-frequency[q])**2)/frequency[q]
-				chi_sq+=squared
+				try:
+					squared=((count[q]-frequency[q])**2)/frequency[q]
+					chi_sq+=squared
+				except:
+					chi_sq=0
 
 			probabilty[i]=chi_sq
 
@@ -89,8 +99,10 @@ def impossible(ciphertext,length):
 
 		probabilty=sorted(probabilty.items(), key=operator.itemgetter(1))
 		#print(probabilty)
-
-		arr_key.append(chr(probabilty[0][0]+97))
+		for x in range(len(probabilty)):
+			if probabilty[x][1]!=0:
+				arr_key.append(chr(probabilty[x][0]+97))
+				break
 
 	true_key=''.join(arr_key)
 
@@ -108,42 +120,54 @@ def impossible(ciphertext,length):
 	true_key=''.join(arr_key)
 	print('final Key:',true_key)
 
-	i=0
-	while i<len(ciphertext):
-		enc=ciphertext[i]
-		if enc in alphabet:
-			decry=(ord(enc)-ord(true_key[i%len(true_key)]))%26
+	plaintext=withkey(real_cipher,true_key)
 
-			plaintext+=chr(decry+97)
-		else:
-			plaintext+=enc
+	print(plaintext.encode('utf-8')) #for preventing unicode error  
 
-		i+=1
-
-	plaintext=withkey(ciphertext,true_key)
-
-	return plaintext
 
 def withkey(ciphertext,true_key):
-	ciphertext=ciphertext.lower()
+	true_key=true_key.lower()
 	plaintext=''
 
 	alphabet='abcdefghijklmnopqrstuvwxyz'
+	ciphertext_adj=''
 
+	for i in ciphertext:
+		if i.lower() in alphabet:
+			ciphertext_adj+=i
 
+	
 	i=0
-	while i<len(ciphertext):
-		enc=ciphertext[i]
-		if enc in alphabet:
-			decry=(ord(enc)-ord(true_key[i%len(true_key)]))%26
+	j=0
+	while j<len(ciphertext):
+		enc=ciphertext[j]
+		if enc in ciphertext_adj:
+			ct=0
 
-			plaintext+=chr(decry+97)
+			if enc.isupper():
+				enc=enc.lower()
+				ct=1
+			
+			decry=(ord(enc)-ord(true_key[i%len(true_key)]))%26
+			char=chr(decry+97)
+
+			if ct==1:
+				char=char.upper()
+
+			plaintext+=char
+			i+=1
+
 		else:
 			plaintext+=enc
 
-		i+=1
+		j+=1
 
 	return plaintext
+
+a=open('C:\\Users\\immas\\Desktop\\Rsa.txt','r').read()	
+impossible(a,10)
+
+#can also use chcp 65001 in the terminal in case of unicode error
 
 
 
