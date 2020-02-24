@@ -21,8 +21,8 @@ def path():
 	return locate
 
 location=path()
-sys.path.append('%s\\Encrypting\\' % location)
-sys.path.append('C:\\Users\\immas\\Desktop\\Main\\Decrypting')
+sys.path.append('C:\\Users\\immas\\Desktop\\Main\\Encrypting\\')
+sys.path.append('%s\\Decrypting\\' % location)
 sys.path.append('%s\\Algorithms\\' % location)
 sys.path.append('%s\\rsa_types\\' % location)
 
@@ -37,6 +37,7 @@ from polybius_enc import tsquaree
 from substitution_enc import substitute
 from rsa_encryptor import rivest
 from twipri import pri
+from rot import rotate,rotate_brute
 
 #algorithms import
 from Ext_Euclid import reversing, printing, Euclid_RSA
@@ -62,10 +63,11 @@ def initializeParser():
 	parser.add_argument("--encrypt","--enc","-e",help="Performs Encryption",action="store_true")
 	parser.add_argument("--sourcefile","--sf","-f",help="Input file with ciphertext",type=str)
 	parser.add_argument("--cipher","--cip","-c",help="Input cipher as test",type=str)
-	parser.add_argument("--key","-k",help="If the key is known (text for vignere, shift for caeser)",type=str)
+	parser.add_argument("--key","-k",help="If the key is known (text for vignere, shift for caeser,ROT)",type=str)
 	parser.add_argument("--len","-l",help="User-defined max probable key length",type=str)
 	parser.add_argument("--caeser","-C",help="If the cipher is caeser cipher",action="store_true")
 	parser.add_argument("--vignere","-V",help="If the cipher is vignere cipher",action="store_true")
+	parser.add_argument("--rot","-O",help="If teh cipher is any rotation cipher",action="store_true")
 	parser.add_argument("--affine","-A",help="If the cipher is affine cipher",action="store_true")
 	parser.add_argument("--bacon","-B",help="If the cipher is bacon cipher",action="store_true")
 	parser.add_argument("--polybius","-P",help="If the cipher is encrypted by a simple 6x6 polybius square",action="store_true")
@@ -183,6 +185,13 @@ def main():
 			display=''
 		elif args.atbash:
 			plaintext=atb(ciphertext)
+		elif args.rot:
+			if key!=None:
+				plaintext=rotate(ciphertext,key)
+			else:
+				plaintext=rotate_brute(ciphertext)
+			display=''
+
 		elif args.polybius:
 			plaintext=psquaree(ciphertext)
 		elif args.substitution:
