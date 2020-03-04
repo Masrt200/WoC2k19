@@ -21,7 +21,7 @@ def path():
 	return locate
 
 location=path()
-sys.path.append('C:\\Users\\immas\\Desktop\\Main\\Encrypting\\')
+sys.path.append('%s\\Encrypting\\' % location)
 sys.path.append('%s\\Decrypting\\' % location)
 sys.path.append('%s\\Algorithms\\' % location)
 sys.path.append('%s\\rsa_types\\' % location)
@@ -37,7 +37,6 @@ from polybius_enc import tsquaree
 from substitution_enc import substitute
 from rsa_encryptor import rivest
 from twipri import pri
-from rot import rotate,rotate_brute
 
 #algorithms import
 from Ext_Euclid import reversing, printing, Euclid_RSA
@@ -53,6 +52,8 @@ from simplersa import init
 from Weiner import attack
 from small_e import smallie
 from internal_attack import company
+from rot import rotate,rotate_brute
+from rot47 import rot47
 
 #parsing starts
 def initializeParser():
@@ -67,7 +68,8 @@ def initializeParser():
 	parser.add_argument("--len","-l",help="User-defined max probable key length",type=str)
 	parser.add_argument("--caeser","-C",help="If the cipher is caeser cipher",action="store_true")
 	parser.add_argument("--vignere","-V",help="If the cipher is vignere cipher",action="store_true")
-	parser.add_argument("--rot","-O",help="If teh cipher is any rotation cipher",action="store_true")
+	parser.add_argument("--rot","-O",help="If the cipher is any rotation cipher",action="store_true")
+	parser.add_argument("--rot47","-47",help="In case you are stuck, try ROT47 just for fun's sake",action="store_true" )
 	parser.add_argument("--affine","-A",help="If the cipher is affine cipher",action="store_true")
 	parser.add_argument("--bacon","-B",help="If the cipher is bacon cipher",action="store_true")
 	parser.add_argument("--polybius","-P",help="If the cipher is encrypted by a simple 6x6 polybius square",action="store_true")
@@ -146,6 +148,12 @@ def main():
 			ciphertext=rail(plaintext)
 		elif args.atbash:
 			ciphertext=atb(plaintext)
+		elif args.rot:
+			if args.key==None:
+				key=input("enter key:")
+			ciphertext=rotate(plaintext,key)
+		elif args.rot47:
+			ciphertext=rot47(plaintext)
 		elif args.polybius:
 			ciphertext=tsquaree(plaintext)
 		elif args.substitution:
@@ -191,6 +199,8 @@ def main():
 			else:
 				plaintext=rotate_brute(ciphertext)
 			display=''
+		elif args.rot47:
+			plaintext=rot47(ciphertext)
 
 		elif args.polybius:
 			plaintext=psquaree(ciphertext)
