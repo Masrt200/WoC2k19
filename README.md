@@ -1,11 +1,5 @@
 # D3crypt0r
 
->*by Mohit Agarwal. 1st Year, Btech in Chemical Engineering*
-
->*Mentor: Nirmit Shah Sir. 2nd Year, Btech in Electronics And Instrumentation Engineering*
-
-**My Winter of Code 2019's Project**; for *Cyberlabs*, the coding club of **IIT(ISM) Dhanbad**.
-
 This projects devotes itself to decrypting various text encryptions algorithms, specifically the likes of Rivest-Shamir-Aldeman(RSA encryption algorithm) and ciphers, mainly the Vigenere and Caeser ciphers and many others.(p.s. encryptions can also be done... since knowledge flows both ways)
 
 #### Application
