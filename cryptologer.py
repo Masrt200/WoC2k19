@@ -1,5 +1,3 @@
- #!/usr/bin/env python
-
 #file should have all ciphers as simple format... just text
 #for rsa_dec, file should have text as n:<no...> \n c:<no....> e:<no....>
 #same for rsa_enc...
@@ -14,17 +12,20 @@ import math
 import requests
 import json
 import binascii
+import os
 
-def path():
-	f1=open('D:\\crrypic\\path.txt','r')
-	locate=f1.read()
-	return locate
+def whereami():
+	with open('/root/directory.txt','r') as f1:
+		location=f1.read()
+	return location
 
-location=path()
-sys.path.append('%s\\Encrypting\\' % location)
-sys.path.append('%s\\Decrypting\\' % location)
-sys.path.append('%s\\Algorithms\\' % location)
-sys.path.append('%s\\rsa_types\\' % location)
+location=whereami()
+
+#appending file paths
+sys.path.append('%s/Encrypting/' % location)
+sys.path.append('%s/Decrypting/' % location)
+sys.path.append('%s/Algorithms/' % location)
+sys.path.append('%s/rsa_types/' % location)
 
 #file imports for encryption
 from caeser import julius,bruteforce
@@ -36,10 +37,12 @@ from atbash import atb
 from polybius_enc import tsquaree
 from substitution_enc import substitute
 from rsa_encryptor import rivest
-from twipri import pri
+from rot import rotate,rotate_brute
+from skip import skip
+from rot47 import rot47
 
 #algorithms import
-from Ext_Euclid import reversing, printing, Euclid_RSA
+from Ext_Euclid import reversing, printing
 
 #file imports for decryption
 from vigenere_dec import impossible, withkey#import impossible, withkey
@@ -52,8 +55,9 @@ from simplersa import init
 from Weiner import attack
 from small_e import smallie
 from internal_attack import company
-from rot import rotate,rotate_brute
-from rot47 import rot47
+from hastad import broadcast
+from multi_cipher import multi
+from boneh_durfee import example
 
 #parsing starts
 def initializeParser():
@@ -68,13 +72,14 @@ def initializeParser():
 	parser.add_argument("--len","-l",help="User-defined max probable key length",type=str)
 	parser.add_argument("--caeser","-C",help="If the cipher is caeser cipher",action="store_true")
 	parser.add_argument("--vignere","-V",help="If the cipher is vignere cipher",action="store_true")
-	parser.add_argument("--rot","-O",help="If the cipher is any rotation cipher",action="store_true")
-	parser.add_argument("--rot47","-47",help="In case you are stuck, try ROT47 just for fun's sake",action="store_true" )
 	parser.add_argument("--affine","-A",help="If the cipher is affine cipher",action="store_true")
 	parser.add_argument("--bacon","-B",help="If the cipher is bacon cipher",action="store_true")
 	parser.add_argument("--polybius","-P",help="If the cipher is encrypted by a simple 6x6 polybius square",action="store_true")
 	parser.add_argument("--railfence","-F",help="If railfence encryption is used",action="store_true")
+	parser.add_argument("--skip","-K",help="If skip cipher is used",action="store_true")
 	parser.add_argument("--atbash","-T",help="If atbash rotation is done on the plaintext",action="store_true")
+	parser.add_argument("--rot","-O",help="If the cipher is any rotation cipher",action="store_true")
+	parser.add_argument("--rot47","-47",help="If the cipher is rotated by ROT47",action="store_true")
 	parser.add_argument("--substitution","-S",help="If the plaintext in encrypted using simple substitution cipher",action="store_true")
 	parser.add_argument("--rsa","-R",help="If the cipher is RSA related",action="store_true") #contains simple and multi_rsa
 	
@@ -82,9 +87,11 @@ def initializeParser():
 	parser.add_argument("--weiner","-W",help="Cracking RSA using Weiner attack",action="store_true")
 	parser.add_argument("--smalle","-E",help="Cracking RSA provided e is very small",action="store_true")
 	parser.add_argument("--internal","-I",help="If an internal attack for RSA is being performed",action="store_true")
+	parser.add_argument("--multi","-M",help="If the message has loads of encrypted ciphers",action="store_true")
 	#parser.add_argument("--fermat","-M",help="Fermat's attack on the RSA encrypted text",action="store_true")
-	parser.add_argument("--twin","-N",help="If the RSA public is a product of twin prime, use this",action="store_true")
-	#parser.add_argument("--chinese","-H",help="Using the Chinese Remainder Theorem for cracking RSA from e packets having the same n",action="store_true")
+	#parser.add_argument("--twin","-N",help="If the RSA public is a product of twin prime, use this",action="store_true")
+	parser.add_argument("--chinese","-H",help="Using the Chinese Remainder Theorem for cracking RSA from e packets having the same n",action="store_true")
+	parser.add_argument("--boneh","-D",help="Using the famous boneh_durfee to calculate d, provided d< N^0.292",action="store_true")
 
 	return parser
 
@@ -103,7 +110,7 @@ def read_rsa(filename):
 			elif symbol=='e':
 				e=int(line[2:])
 			elif symbol=='c':
-				c=int(line[2:])
+				c=line[2:]
 			elif symbol=='m':
 				c=line[2:]
 			else:
@@ -112,6 +119,30 @@ def read_rsa(filename):
 			line=f2.readline()
 
 	return n,e,c
+
+def read_chinese(filename):
+	with open(filename,"r") as f3:
+		line=f3.readline()
+		while line:
+			symbol=line[:2].lower()
+			if symbol=='n1':
+				n1=int(line[3:])
+			elif symbol=='n2':
+				n2=int(line[3:])
+			elif symbol=='n3':
+				n3=int(line[3:])
+			elif symbol=='c1':
+				c1=int(line[3:])
+			elif symbol=='c2':
+				c2=int(line[3:])
+			elif symbol=='c3':
+				c3=int(line[3:])
+			else:
+				raise Exception("the contents of the file can't be read properly")
+				break
+			line=f3.readline()
+
+	return n1,n2,n3,c1,c2,c3
 
 
 def main():
@@ -146,14 +177,17 @@ def main():
 			ciphertext=steak(plaintext)
 		elif args.railfence:
 			ciphertext=rail(plaintext)
-		elif args.atbash:
-			ciphertext=atb(plaintext)
 		elif args.rot:
 			if args.key==None:
-				key=input("enter key:")
-			ciphertext=rotate(plaintext,key)
+				shift=input("enter shift:")
+			ciphertext=rotate(plaintext,shift)
 		elif args.rot47:
 			ciphertext=rot47(plaintext)
+		elif args.skip:
+			loop=int(input("Enter skip:"))
+			ciphertext=skip(plaintext,loop)
+		elif args.atbash:
+			ciphertext=atb(plaintext)
 		elif args.polybius:
 			ciphertext=tsquaree(plaintext)
 		elif args.substitution:
@@ -187,9 +221,19 @@ def main():
 		elif args.affine:
 			plaintext=fine(ciphertext)
 		elif args.bacon:
-			plaintext=pork(ciphertext)
+			if args.key!=None:
+				plaintext=pork(ciphertext,key)
+			else:
+				plaintext=pork(ciphertext,0)
 		elif args.railfence:
-			plaintext=fence(ciphertext)
+			length=args.len
+			if args.len!=None:
+				plaintext=fence(ciphertext,int(length))
+			else:
+				plaintext=fence(ciphertext,None)
+			display=''
+		elif args.skip:
+			plaintext=skip(ciphertext,None)
 			display=''
 		elif args.atbash:
 			plaintext=atb(ciphertext)
@@ -198,17 +242,22 @@ def main():
 				plaintext=rotate(ciphertext,key)
 			else:
 				plaintext=rotate_brute(ciphertext)
-			display=''
+				display=''
 		elif args.rot47:
 			plaintext=rot47(ciphertext)
-
 		elif args.polybius:
 			plaintext=psquaree(ciphertext)
 		elif args.substitution:
 			plaintext=manual(ciphertext)
+		elif args.chinese:
+			n1,n2,n3,c1,c2,c3=read_chinese(args.sourcefile)
+			display='message:'
+			plaintext=printing(broadcast(n1,n2,n3,c1,c2,c3))
 		else:
 			n,e,c=read_rsa(args.sourcefile)
 			display='message:'
+			if not args.multi:
+				c=int(c)
 			if args.rsa:
 				plaintext=init(n,e,c)
 			elif args.weiner:
@@ -217,12 +266,14 @@ def main():
 				plaintext=printing(smallie(n,c))
 			elif args.internal:
 				plaintext=company(n,e,c)
-			elif args.twin:
-				p,q=pri(n)
-				tot=(p-1)*(q-1)
-				print("totient:",int(tot))
-				plaintext=reversing(n,Euclid_RSA(e,tot),c)
-
+			elif args.boneh:
+				plaintext=reversing(n,example(n,e),c)
+			elif args.multi:
+				arraytext=multi(n,e,c)
+				plaintext=''
+				for i in arraytext:
+					plaintext+=printing(i)
+			
 
 
 			

@@ -4,11 +4,13 @@ from collections import deque
 import os
 
 def clear():
-    os.system('cls')
+    os.system('clear')
 
 def manual(ciphertext):
+    reset='\033[0m'
+    yellow='\033[93m'
     ciphertext=ciphertext.upper()
-    _alphabet_='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    _alphabet_="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
     frequency={'A':0,'B':0,'C':0,'D':0,'E':0,'F':0,'G':0,'H':0,'I':0,'J':0,'K':0,'L':0,'M':0,'N':0,'O':0,'P':0,'Q':0,'R':0,'S':0,'T':0,'U':0,'V':0,'W':0,'X':0,'Y':0,'Z':0}
     digraphs={'AA':0,'BB':0,'CC':0,'DD':0,'EE':0,'FF':0,'GG':0,'HH':0,'II':0,'JJ':0,'KK':0,'LL':0,'MM':0,'NN':0,'OO':0,'PP':0,'QQ':0,'RR':0,'SS':0,'TT':0,'UU':0,'VV':0,'WW':0,'XX':0,'YY':0,'ZZ':0}
@@ -44,7 +46,7 @@ def manual(ciphertext):
         if cip_guess=='BACK':
             try:
                 pos=len(plain_letter)-1
-                ciphertext=ciphertext.replace(plain_letter[pos],cip_letter[pos])
+                ciphertext=ciphertext.replace(plain_letter[pos],reset+cip_letter[pos])
                 cip_letter.remove(cip_letter[pos])
                 plain_letter.remove(plain_letter[pos])
             except:
@@ -55,7 +57,7 @@ def manual(ciphertext):
             plain_guess=(input('Enter the letter to replace with:')).lower()
             cip_letter.append(cip_guess)
             plain_letter.append(plain_guess)
-            ciphertext=ciphertext.replace(cip_guess,plain_guess)
+            ciphertext=ciphertext.replace(cip_guess,yellow+plain_guess+reset)
         else:
             pass
         

@@ -39,8 +39,7 @@ def encrypt(plaintext,key):
 		j+=1
 		
 
-	print(ciphertext)
+	return ciphertext
 
-encrypt('Wzhu{ufsifx_xmtzqi_sty_gk_uzy_ns_ujsx}','CUTENESS')
 
 

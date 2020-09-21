@@ -1,12 +1,14 @@
 #railrailfence_cipher decryptor
 import math
 
-def fence(ciphertext):
+def fence(ciphertext,train): 
 	width=len(ciphertext)
+	if train==None:
+		train=width
 	Solution=''
 
 	rails=2
-	while rails<=width:#always >2 and <len(ciphertext)
+	while rails<=train:#always >2 and <len(ciphertext)
 
 		cycle=(rails*2)-2
 		letters=math.ceil(width/cycle) #letters in the first rail

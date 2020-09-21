@@ -122,7 +122,7 @@ def impossible(ciphertext,length):
 
 	plaintext=withkey(real_cipher,true_key)
 
-	print(plaintext.encode('utf-8')) #for preventing unicode error  
+	return plaintext.encode('utf-8') #for preventing unicode error  
 
 
 def withkey(ciphertext,true_key):
@@ -164,9 +164,6 @@ def withkey(ciphertext,true_key):
 
 	return plaintext
 
-a=open('C:\\Users\\immas\\Desktop\\Rsa.txt','r').read()	
-impossible(a,10)
-
 #can also use chcp 65001 in the terminal in case of unicode error
 
 
@@ -187,5 +184,6 @@ impossible(a,10)
 
 
 #print(index_of_coincidence)
+
 
 

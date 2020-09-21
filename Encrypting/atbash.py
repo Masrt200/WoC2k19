@@ -2,7 +2,6 @@ def atb(sometext):
 	othertext=''
 	alphabet='abcdefghijklmnopqrstuvwxyz'
 	atbash='zyxwvutsrqponmlkjihgfedcba'
-	#for rot13, rot13='nopqrstuvwxyzabcdefghijklm'
 	for x in sometext:
 		ct=0
 		if x.isupper():
@@ -19,3 +18,4 @@ def atb(sometext):
 			othertext+=x
 
 	return othertext
+

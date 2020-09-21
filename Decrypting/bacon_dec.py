@@ -1,10 +1,16 @@
 #bacon cipher decryptor
+#I/J have the same position... 
+#so does U/V...  
+#other version... takes unique letters
 
-def pork(ciphertext):
+def pork(ciphertext,key):
+	ciphertext=ciphertext.lower()
 	plaintext=''
 
-	alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-
+	alphabet='ABCDEFGHIKLMNOPQRSTUWXYZ'
+	b1='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+	if key=='1':
+		alphabet=b1
 	value={}
 	y=0
 	for x in alphabet:
