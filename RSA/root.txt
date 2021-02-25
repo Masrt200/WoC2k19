@@ -1,0 +1,13 @@
+def root(n, k):
+      low = 0
+      high = n + 1
+      while high > low + 1:
+         mid = (low + high) >> 1
+         mr = mid**k
+         if mr == n:
+            return (mid, 1)
+         if mr < n:
+            low = mid
+         if mr > n:
+            high = mid
+      return (low, 0)

@@ -4,30 +4,39 @@
 
 
 #importing...
-import sys
-import re
+#import sys
+#import re
 import argparse
-import operator
-import math
-import requests
-import json
-import binascii
-import os
+#import operator
+#import math
+#import requests
+#import json
+#import binascii
+#import os
+#import time
 
+'''
 def whereami():
 	with open('/root/directory.txt','r') as f1:
 		location=f1.read()
 	return location
 
-location=whereami()
+location=whereami()'''
 
 #appending file paths
+'''
+import Encrypting as enc
+import Decrypting as dec
+import Algorithms as alg
+import rsa_types as RSA'''
+'''
 sys.path.append('%s/Encrypting/' % location)
 sys.path.append('%s/Decrypting/' % location)
 sys.path.append('%s/Algorithms/' % location)
-sys.path.append('%s/rsa_types/' % location)
+sys.path.append('%s/rsa_types/' % location)'''
 
 #file imports for encryption
+'''
 from caeser import julius,bruteforce
 from vigenere_enc import encrypt
 from affine_enc import aff_enc
@@ -39,12 +48,14 @@ from substitution_enc import substitute
 from rsa_encryptor import rivest
 from rot import rotate,rotate_brute
 from skip import skip
-from rot47 import rot47
+from rot47 import rot47'''
 
 #algorithms import
-from Ext_Euclid import reversing, printing
+
+from alg.Ext_Euclid import reversing, printing
 
 #file imports for decryption
+'''
 from vigenere_dec import impossible, withkey#import impossible, withkey
 from affine_dec import fine
 from bacon_dec import pork
@@ -57,7 +68,7 @@ from small_e import smallie
 from internal_attack import company
 from hastad import broadcast
 from multi_cipher import multi
-from boneh_durfee import example
+from boneh_durfee import example'''
 
 #parsing starts
 def initializeParser():
@@ -148,6 +159,8 @@ def read_chinese(filename):
 def main():
 	parser=initializeParser()
 	args=parser.parse_args()
+	
+	
 
 	if args.encrypt or args.decrypt:
 		if args.cipher!=None:
@@ -162,37 +175,62 @@ def main():
 	if args.encrypt:
 		plaintext=rawtext
 		if args.caeser:
+			from enc.caeser import julius
+
 			if args.key==None:
 				shift=int(input("enter shift:"))
 			else:
 				shift=int(key)
 			ciphertext=julius(plaintext,shift)
+
 		elif args.vignere:
+			from enc.vigenere_enc import encrypt
+
 			if args.key==None:
 				key=input("enter key:")
 			ciphertext=encrypt(plaintext,key)
+
 		elif args.affine:
+			from enc.affine_enc import aff_enc
 			ciphertext=aff_enc(plaintext)
+
 		elif args.bacon:
+			from enc.bacon_enc import steak
 			ciphertext=steak(plaintext)
+
 		elif args.railfence:
+			from enc.railfence_enc import rail
 			ciphertext=rail(plaintext)
+
 		elif args.rot:
+			from enc.rot import rotate
 			if args.key==None:
 				shift=input("enter shift:")
 			ciphertext=rotate(plaintext,shift)
+
 		elif args.rot47:
+			from enc.rot47 import rot47
 			ciphertext=rot47(plaintext)
+
 		elif args.skip:
+			from enc.skip import skip
 			loop=int(input("Enter skip:"))
 			ciphertext=skip(plaintext,loop)
+
 		elif args.atbash:
+			from enc.atbash import atb
 			ciphertext=atb(plaintext)
+
 		elif args.polybius:
+			from enc.polybius_enc import tsquaree
 			ciphertext=tsquaree(plaintext)
+
 		elif args.substitution:
+			from enc.substitution_enc import substitute
 			ciphertext=substitute(plaintext)
+
 		elif args.rsa:
+			from enc.rsa_encryptor import rivest
 			n,e,m=read_rsa(args.sourcefile)
 			ciphertext=rivest(n,e,m)
 			display='message:'
@@ -206,6 +244,7 @@ def main():
 		ciphertext=rawtext
 		display='plaintext:'
 		if args.caeser:
+			from enc.caeser import julius,bruteforce
 			if args.key!=None:
 				plaintext=julius(ciphertext,-int(key))
 			else:
@@ -213,43 +252,64 @@ def main():
 				plaintext=bruteforce(ciphertext)
 
 		elif args.vignere:
+			from dec.vigenere_dec import impossible, withkey
 			length=args.len
 			if key!=None:
 				plaintext=withkey(ciphertext,key)
 			else:
 				plaintext=impossible(ciphertext,length)
+
 		elif args.affine:
+			from dec.affine_dec import fine
 			plaintext=fine(ciphertext)
+
 		elif args.bacon:
+			from dec.bacon_dec import pork
 			if args.key!=None:
 				plaintext=pork(ciphertext,key)
 			else:
 				plaintext=pork(ciphertext,0)
+
 		elif args.railfence:
+			from dec.railfence_dec import fence
 			length=args.len
 			if args.len!=None:
 				plaintext=fence(ciphertext,int(length))
 			else:
 				plaintext=fence(ciphertext,None)
 			display=''
+
 		elif args.skip:
+			from enc.skip import skip
 			plaintext=skip(ciphertext,None)
 			display=''
+
 		elif args.atbash:
+			from enc.atbash import atb
 			plaintext=atb(ciphertext)
+
 		elif args.rot:
+			from enc.rot import rotate,rotate_brute
 			if key!=None:
 				plaintext=rotate(ciphertext,key)
 			else:
 				plaintext=rotate_brute(ciphertext)
 				display=''
+
 		elif args.rot47:
+			from enc.rot47 import rot47
 			plaintext=rot47(ciphertext)
+
 		elif args.polybius:
+			from dec.polybius_dec import psquaree
 			plaintext=psquaree(ciphertext)
+
 		elif args.substitution:
+			from dec.substitution_dec import manual
 			plaintext=manual(ciphertext)
+
 		elif args.chinese:
+			from RSA.hastad import broadcast
 			n1,n2,n3,c1,c2,c3=read_chinese(args.sourcefile)
 			display='message:'
 			plaintext=printing(broadcast(n1,n2,n3,c1,c2,c3))
@@ -259,16 +319,27 @@ def main():
 			if not args.multi:
 				c=int(c)
 			if args.rsa:
+				from RSA.simplersa import init
 				plaintext=init(n,e,c)
+
 			elif args.weiner:
+				from RSA.Weiner import attack
 				plaintext=reversing(n,attack(e,n),c)
+
 			elif args.smalle:
+				from RSA.small_e import smallie
 				plaintext=printing(smallie(n,c))
+
 			elif args.internal:
+				from RSA.internal_attack import company
 				plaintext=company(n,e,c)
+
 			elif args.boneh:
+				from RSA.boneh_durfee import example
 				plaintext=reversing(n,example(n,e),c)
+
 			elif args.multi:
+				from RSA.multi_cipher import multi
 				arraytext=multi(n,e,c)
 				plaintext=''
 				for i in arraytext:
@@ -284,7 +355,8 @@ def main():
 		except:
 			print("NullError: no ciphering technique mentioned")
 
-
+		
+		
 
 
 if __name__=="__main__":

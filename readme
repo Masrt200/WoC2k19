@@ -1,0 +1,9 @@
+after unzipping the files:::
+-----
+To start decrypting... first run alias.py by opening the terminal here...
+-----
+then close the terminal and enter 'cryptologer' followed by the respective flags to start decrypting anywhere...
+-----
+repeat step1 if you rename the folder or change its location...
+-----
+alais.py creates directory.txt in root folder, dont delete that!
