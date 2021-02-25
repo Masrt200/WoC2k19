@@ -60,6 +60,7 @@ def ext_Euclid(A,B):  #for calcing value 'd' by extended Euclidean Algorithm
 
 def rsa_calc(n):
     factors=factordb(n)
+    tot=None
     if len(factors)==2:
         p=factors[0]
         q=factors[1]
